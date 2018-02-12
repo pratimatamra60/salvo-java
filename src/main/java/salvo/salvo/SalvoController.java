@@ -18,8 +18,8 @@ optionally modify data in a database, and finally return an object
 that can be converted to JSON to send back to the web client.
 */
 
-//@RestController
-//@RequestMapping("/api")
+@RestController
+@RequestMapping("/api")
  public class SalvoController {
     @Autowired //instance variable, to hold a GameRepository.
     private GameRepository repo;
@@ -31,7 +31,7 @@ that can be converted to JSON to send back to the web client.
 
     @RequestMapping("/games") //it will be called to handle the URL /games.
     //public method that returns a List<Object>.
-    public List<Long> getGames() {
+    public List<Map> getGames() {
 
 
 /*
@@ -41,7 +41,7 @@ that can be converted to JSON to send back to the web client.
         all.forEach(new Consumer<Game>() {
             @Override
             public void accept(Game game) {
-                long id = game.getId();
+                long id = game.getGameId();
                 listOfIds.add(id);
             }
         });
@@ -51,13 +51,49 @@ that can be converted to JSON to send back to the web client.
 
 
     //efficient way to do the same lines of code above
-        return repo.findAll().stream().map(game -> game.getId()).collect(toList());
+    //task 4 //return repo.findAll().stream().map(game -> game.getId()).collect(toList());
 
-/*        Map<String, Integer> ages = new HashMap<>();
-        ages.put("John", 32);
-        ages.put("Mary", 26);
-        ages.put("Bill", 19);*/
+        return repo.findAll().stream().map(game -> getGameMaps(game)).collect(toList());
+    }
+    //task5 it needs to return Maps
+
+    private Map  getGameMaps(Game game){
+        Map<String,Object> gameMap = new HashMap<>();
+        gameMap.put("id",game.getGameId());
+        gameMap.put("creationDate", game.getCreationDate());
+
+        //Create a list with a Map for each game.
+        //In the Map for each game, put keys and values
+        //for the game ID, creation date, and gamePlayers.
+        //For the value for the gamePlayers key, create a
+        // List with a Map for each GamePlayer.
+
+        List<Map> gamePlayerMap = game.getGamePlayers().stream().map(gamePlayer -> getGamePlayerMaps(gamePlayer)).collect(toList());
+        gameMap.put("gamePlayers",gamePlayerMap);
+
+        return gameMap;
+    }
+        // In the Map for each GamePlayer, put keys and values for the
+        // GamePlayer ID and the player.
+
+    private Map getGamePlayerMaps(GamePlayer gamePlayer){
+        Map<String,Object> gamePlayerMap = new HashMap<>();
+        gamePlayerMap.put("id",gamePlayer.getGamePlayerId());
+        //gamePlayerMap.put("username", gamePlayer.getPlayer().getUserName());
+
+        Map<String,Object> playerMap = getPlayerMaps(gamePlayer.getPlayer());
+        gamePlayerMap.put("player", playerMap);
+
+        return gamePlayerMap;
 
 
+    }
+        //  For the value of the player, create a Map with keys for
+        //  the player ID and the player's email.
+    private Map getPlayerMaps(Player player){
+        Map<String,Object> playerMap = new HashMap<>();
+        playerMap.put("id",player.getPlayerId());
+        playerMap.put("username", player.getUserName());
+        return playerMap;
     }
 }

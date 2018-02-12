@@ -14,7 +14,7 @@ public class GamePlayer {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    private long gamePlayerId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="player_id")
@@ -33,7 +33,9 @@ public class GamePlayer {
         this.player = player;
         this.date = date;
     }
-
+    public long getGamePlayerId() {
+        return gamePlayerId;
+    }
 
     public Player getPlayer() {
         return player;
