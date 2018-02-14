@@ -1,4 +1,4 @@
-/*package salvo.salvo;
+package salvo.salvo;
 
 //The PlayerRepository class is responsible for persisting instances of Player to database H2
 // in our case, and retrieving instances.Notice how the Spring Data framework encourages
@@ -12,4 +12,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ShipRepository extends JpaRepository<Ship, Long> {
 
 }
-*/
+

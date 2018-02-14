@@ -11,9 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -26,9 +24,8 @@ public class Game {
     @Id //The annotation @Id says that the id instance variable holds the database key for this class.
     @GeneratedValue(strategy=GenerationType.AUTO) //    The annotation @GeneratedValue tells JPA to get the Id from the DBMS.
     private long gameId; // a unique number assigned to each player.
-    //private Date creationDate;
+    private long creationDate;
 
-    private String date;
 
     public Set<GamePlayer> getGamePlayers() {
         return gamePlayers;
@@ -42,8 +39,6 @@ public class Game {
     Set<GamePlayer> gamePlayers;
 
 
-    private long creationDate;
-
     public Game() { }
 
 
@@ -52,14 +47,7 @@ public class Game {
     public Game(long creationDate) {
         this.creationDate = creationDate;
     }
-   /* public String getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-*/
    public long getGameId() {
        return gameId;
    }
