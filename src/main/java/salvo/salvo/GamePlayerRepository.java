@@ -6,10 +6,12 @@ package salvo.salvo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 
 @RepositoryRestResource
 //JpaRepository is a interface
 public interface GamePlayerRepository extends JpaRepository<GamePlayer, Long> {
-
+    GamePlayer findByGamePlayerId(Long gamePlayerId); // we dont want it to return whole list of gameplayer but just a gameplayer with given id
 }
 

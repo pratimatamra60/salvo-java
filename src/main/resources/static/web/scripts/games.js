@@ -16,7 +16,6 @@ function Game ()
            that.games = json;
            //console.log(that.games);//whole json
            that.addGames();// call this here to make sure it gets data inorder to add
-           //that.addPlayers();
 
          })
          .fail(function( jqxhr, textStatus, error ) {

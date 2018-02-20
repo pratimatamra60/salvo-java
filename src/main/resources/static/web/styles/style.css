@@ -1,0 +1,26 @@
+#container {
+  height: 540px;
+  width: 510px;
+  padding: 1px;
+  line-height: 40px;
+
+}
+.grid {
+  border: 1px solid blue;
+  height: 40px;
+  width: 40px;
+  margin: 1px;
+  padding: 1px;
+  display: inline-block;
+  background-color: white;
+  vertical-align: top;
+}
+
+div{
+  margin : auto;
+}
+
+.game-info
+{
+    text-align: center;
+}

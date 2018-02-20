@@ -19,9 +19,12 @@ public class SalvoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository) {
+	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository,
+                                      ShipRepository shipRepository, SalvoRepository salvoRepository) {
 		return (args) -> {
-		    //option 1
+		    //-------------------------------Players----------------------------------------------------------
+
+            //option 1
 			//Player tom = new Player("tom@gmail.com"); //direct initialization
 
             //option 2
@@ -46,6 +49,9 @@ public class SalvoApplication {
             playerRepository.save(new Player("jeddy@hotmail.com")); //
             playerRepository.save(new Player("tom@hotmail.com"));*/
 
+
+//--------------------------Game---------------------------------------------------------------
+
             Date date = new Date();
 
             Game game = new Game ();
@@ -67,6 +73,8 @@ public class SalvoApplication {
 
             /*gameRepository.save(new Game(date.toString()));
             gameRepository.save(new Game(date.getTime()));*/
+
+//--------------------------GamePlayer---------------------------------------------------------------
 
             /*long  time ;
             time = date.getTime();*/
@@ -110,6 +118,7 @@ public class SalvoApplication {
             GamePlayer gamePlayer12 = new GamePlayer(game6, jack, date);
             gamePlayerRepository.save(gamePlayer12);
 
+//--------------------------Ships---------------------------------------------------------------
 
             List<String> locations = Arrays.asList("H1", "H3", "D5", "B2");
 
@@ -138,12 +147,44 @@ public class SalvoApplication {
 
 
             gamePlayer1.addShip(ship);
-            gamePlayer1.addShip(ship1);
-            gamePlayer1.addShip(ship2);
-            gamePlayer1.addShip(ship3);
-            gamePlayer1.addShip(ship4);
-            gamePlayer1.addShip(ship5);
-            gamePlayer1.addShip(ship6);
+            gamePlayer2.addShip(ship1);
+            gamePlayer3.addShip(ship2);
+            gamePlayer4.addShip(ship3);
+            gamePlayer5.addShip(ship4);
+            gamePlayer6.addShip(ship5);
+            gamePlayer7.addShip(ship6);
+
+
+//--------------------------Salvos---------------------------------------------------------------
+            Salvo salvo  = new Salvo (gamePlayer, 2, locations);
+            salvoRepository.save(salvo);
+
+            Salvo salvo1 = new Salvo (gamePlayer1,2, Arrays.asList("B1", "B2", "B3"));
+            salvoRepository.save(salvo1);
+
+            Salvo salvo2 = new Salvo (gamePlayer2, 3,  Arrays.asList("C1", "A1", "E5"));
+            salvoRepository.save(salvo2);
+
+            Salvo salvo3 = new Salvo (gamePlayer6,3, Arrays.asList("E6", "E1", "F5"));
+            salvoRepository.save(salvo3);
+
+            Salvo salvo4 = new Salvo (gamePlayer3,4, Arrays.asList("A2", "B2", "C2"));
+            salvoRepository.save(salvo4);
+
+            Salvo salvo5 = new Salvo (gamePlayer4,2, Arrays.asList("E2", "F1", "D5"));
+            salvoRepository.save(salvo5);
+
+            Salvo salvo6 = new Salvo (gamePlayer8,2, Arrays.asList("F2", "C1", "D5"));
+            salvoRepository.save(salvo6);
+
+
+            gamePlayer1.addSalvos(salvo);
+            gamePlayer2.addSalvos(salvo1);
+            gamePlayer3.addSalvos(salvo2);
+            gamePlayer4.addSalvos(salvo3);
+            gamePlayer5.addSalvos(salvo4);
+            gamePlayer6.addSalvos(salvo5);
+            gamePlayer7.addSalvos(salvo6);
         };
 	}
 }
