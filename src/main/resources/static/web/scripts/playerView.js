@@ -43,6 +43,7 @@ function GetGamePlayer(url) {
 
                 that.showGamePlayers();
                 that.showShipLocations();
+                that.showSalvoLocations();
          })
          .fail(function( jqxhr, textStatus, error ) {
            var err = textStatus + ", " + error;
@@ -61,14 +62,26 @@ function GetGamePlayer(url) {
        }
 
    this.showShipLocations = function (){
-       console.log("---------------");
+       //console.log("---------------");
        console.log(this.games.ships);
        $.each(this.games.ships, function( shipIndex, ship ) {
             $.each(ship.locations, function( locIndex, location ) {
-                $('.grid.'+location).css("background","red")
+                $('.grid.'+location).addClass('ship')
             });
        });
     }
+
+   this.showSalvoLocations = function (){
+    //console.log(this.games.salvos);
+
+    var ships = this.games.ships;
+    console.log(ships);
+    $.each(this.games.salvos, function( salvoIndex, salvo ) {
+          $.each(salvo.salvoLocations, function( locIndex, location ) {
+                   $('.grid.'+location).addClass("salvo");
+          });
+   });
+}
 }
 function makeUrl() {
         let params = (new URL(location)).searchParams;// to get an id of a gamePlayer from http://localhost:8080/web/playerView.html?gp=2

@@ -20,6 +20,18 @@ div{
   margin : auto;
 }
 
+.ship{
+background-color:blue;
+}
+
+.salvo{
+    background-color: yellow;
+}
+
+.ship.salvo{
+    background-color: red;
+}
+
 .game-info
 {
     text-align: center;

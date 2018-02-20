@@ -120,15 +120,18 @@ public class SalvoApplication {
 
 //--------------------------Ships---------------------------------------------------------------
 
-            List<String> locations = Arrays.asList("H1", "H3", "D5", "B2");
+            List<String> locations = Arrays.asList("A1", "A3", "D5", "B2");
 
 
 
-          Ship ship  = new Ship (gamePlayer, "Destroyer", locations);
-          shipRepository.save(ship);
+            Ship ship  = new Ship (gamePlayer, "Destroyer", locations);
+            shipRepository.save(ship);
 
-           Ship ship1 = new Ship (gamePlayer1,"Submarine",Arrays.asList("A2", "A1", "D5"));
+            Ship ship1 = new Ship (gamePlayer1,"Submarine",Arrays.asList("A2", "A1", "D5"));
             shipRepository.save(ship1);
+
+            Ship ship7 = new Ship (gamePlayer1,"Boat",Arrays.asList("A6", "A7", "D8"));
+            shipRepository.save(ship7);
 
             Ship ship2 = new Ship (gamePlayer2,"Patrol Boat", Arrays.asList("A2", "A1", "D5"));
             shipRepository.save(ship2);
@@ -146,8 +149,10 @@ public class SalvoApplication {
             shipRepository.save(ship6);
 
 
-            gamePlayer1.addShip(ship);
-            gamePlayer2.addShip(ship1);
+            gamePlayer1.addShip(ship1);
+            gamePlayer1.addShip(ship7);
+
+            gamePlayer2.addShip(ship);
             gamePlayer3.addShip(ship2);
             gamePlayer4.addShip(ship3);
             gamePlayer5.addShip(ship4);
@@ -156,8 +161,10 @@ public class SalvoApplication {
 
 
 //--------------------------Salvos---------------------------------------------------------------
-            Salvo salvo  = new Salvo (gamePlayer, 2, locations);
+            Salvo salvo  = new Salvo (gamePlayer, 2, Arrays.asList("D1", "D2", "D3"));
             salvoRepository.save(salvo);
+            Salvo salvo7 = new Salvo (gamePlayer,2, Arrays.asList("B1", "B2", "B3"));
+            salvoRepository.save(salvo7);
 
             Salvo salvo1 = new Salvo (gamePlayer1,2, Arrays.asList("B1", "B2", "B3"));
             salvoRepository.save(salvo1);

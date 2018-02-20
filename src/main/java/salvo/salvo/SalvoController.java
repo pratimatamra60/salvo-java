@@ -125,8 +125,8 @@ that can be converted to JSON to send back to the web client.
         List<Map> shipMap = activeGamePlayer.getShips().stream().map(ship -> getShipMaps(ship)).collect(toList());
         gameViewMap.put("ships",shipMap);
 
-       /* List<Map> salvoMap = activeGamePlayer.getSalvos().stream().map(salvo -> getSalvoMaps(salvo)).collect(toList());
-        gameViewMap.put("salvos",salvoMap);*/
+       List<Map> salvoMap = activeGamePlayer.getSalvos().stream().map(salvo -> getSalvoMaps(salvo)).collect(toList());
+        gameViewMap.put("salvos",salvoMap);
         return gameViewMap;
     }
 
@@ -137,12 +137,11 @@ that can be converted to JSON to send back to the web client.
         return shipMap;
     }
 
-   /* private Map getSalvoMaps(Salvo salvo){
+    private Map getSalvoMaps(Salvo salvo){
         Map<String,Object> salvoMap = new HashMap<>();
         salvoMap.put("turn",salvo.getTurn());
-        //List<Map> gamePlayerMap = salvo.getGamePlayer().getPlayer().stream().map(gamePlayer -> getGamePlayerMaps(gamePlayer)).collect(toList());
-        //salvoMap.put();
+        salvoMap.put("playerId", salvo.getGamePlayer().getGamePlayerId());
         salvoMap.put("salvoLocations", salvo.getLocations());
         return salvoMap;
-    }*/
+    }
 }
